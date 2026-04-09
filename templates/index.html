@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MedAssist – Disease Predictor</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+</head>
+<body>
+  <!-- ── Header ── -->
+  <header class="header">
+    <div class="header-inner">
+      <div class="logo">
+        <span class="logo-icon">🩺</span>
+        <span class="logo-text">MedAssist</span>
+      </div>
+      <span class="badge">ML-Powered · For Educational Use Only</span>
+    </div>
+  </header>
+
+  <!-- ── Main ── -->
+  <main class="main">
+
+    <!-- Hero -->
+    <section class="hero">
+      <h1>Symptom-Based Disease Predictor</h1>
+      <p class="hero-sub">
+        Describe your symptoms in plain English, select them from the list,
+        or both — our decision-tree model will suggest a likely condition.
+      </p>
+    </section>
+
+    <!-- Input card -->
+    <div class="card input-card">
+      <div class="tabs">
+        <button class="tab active" data-tab="text">💬 Describe Symptoms</button>
+        <button class="tab" data-tab="select">☑️ Select Symptoms</button>
+      </div>
+
+      <!-- Text tab -->
+      <div class="tab-panel active" id="tab-text">
+        <label class="field-label" for="symptom-text">
+          Type what you're experiencing
+        </label>
+        <textarea
+          id="symptom-text"
+          rows="4"
+          placeholder="e.g. I have a high fever, headache and I've been coughing for 3 days…"
+        ></textarea>
+      </div>
+
+      <!-- Select tab -->
+      <div class="tab-panel" id="tab-select">
+        <label class="field-label">Search & select symptoms</label>
+        <input
+          id="sym-search"
+          type="search"
+          placeholder="Filter symptoms…"
+          autocomplete="off"
+        />
+        <div id="sym-grid" class="sym-grid">
+          <!-- Populated by JS -->
+          <span class="loading-chips">Loading symptoms…</span>
+        </div>
+      </div>
+
+      <div class="selected-preview" id="selected-preview" hidden>
+        <strong>Selected:</strong> <span id="selected-tags"></span>
+      </div>
+
+      <button id="predict-btn" class="btn-predict">
+        <span class="btn-icon">🔍</span> Predict Disease
+      </button>
+    </div>
+
+    <!-- Result card -->
+    <div class="card result-card" id="result-card" hidden>
+      <div id="result-content"></div>
+    </div>
+
+    <!-- Disclaimer -->
+    <p class="disclaimer">
+      ⚠️ MedAssist is a demonstration tool for educational purposes only.
+      It is <strong>not</strong> a substitute for professional medical advice,
+      diagnosis, or treatment. Always consult a qualified healthcare provider.
+    </p>
+
+  </main>
+
+  <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>

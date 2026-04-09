@@ -1,0 +1,283 @@
+/* ── Reset & base ─────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:         #f0f4ff;
+  --surface:    #ffffff;
+  --primary:    #4f6ef7;
+  --primary-d:  #3a56d4;
+  --primary-bg: #eef1fe;
+  --accent:     #10b981;
+  --accent-bg:  #d1fae5;
+  --warn:       #f59e0b;
+  --warn-bg:    #fef3c7;
+  --danger:     #ef4444;
+  --danger-bg:  #fee2e2;
+  --text:       #1e293b;
+  --muted:      #64748b;
+  --border:     #e2e8f0;
+  --radius:     14px;
+  --shadow:     0 4px 24px rgba(0,0,0,.08);
+}
+
+body {
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+}
+
+/* ── Header ─────────────────────────────────────────────── */
+.header {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+.header-inner {
+  max-width: 760px;
+  margin: auto;
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.logo { display: flex; align-items: center; gap: 10px; }
+.logo-icon { font-size: 1.6rem; }
+.logo-text { font-size: 1.25rem; font-weight: 700; color: var(--primary); }
+.badge {
+  font-size: .7rem;
+  font-weight: 600;
+  color: var(--muted);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 99px;
+  padding: 4px 10px;
+  white-space: nowrap;
+}
+
+/* ── Main ───────────────────────────────────────────────── */
+.main {
+  max-width: 760px;
+  margin: auto;
+  padding: 36px 20px 60px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* ── Hero ────────────────────────────────────────────────── */
+.hero h1 { font-size: 1.7rem; font-weight: 800; line-height: 1.2; }
+.hero-sub { margin-top: 8px; color: var(--muted); font-size: .95rem; max-width: 560px; }
+
+/* ── Card ────────────────────────────────────────────────── */
+.card {
+  background: var(--surface);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 28px;
+}
+
+/* ── Tabs ────────────────────────────────────────────────── */
+.tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 22px;
+  border-bottom: 2px solid var(--border);
+  padding-bottom: 0;
+}
+.tab {
+  background: none;
+  border: none;
+  padding: 8px 16px;
+  font-size: .9rem;
+  font-weight: 600;
+  color: var(--muted);
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -2px;
+  transition: color .15s, border-color .15s;
+}
+.tab.active { color: var(--primary); border-color: var(--primary); }
+.tab:hover:not(.active) { color: var(--text); }
+
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+
+/* ── Fields ─────────────────────────────────────────────── */
+.field-label {
+  display: block;
+  font-size: .85rem;
+  font-weight: 600;
+  color: var(--muted);
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+}
+
+textarea, input[type="search"] {
+  width: 100%;
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  padding: 12px 14px;
+  font-size: .95rem;
+  font-family: inherit;
+  color: var(--text);
+  background: var(--surface);
+  transition: border-color .2s;
+  resize: vertical;
+}
+textarea:focus, input[type="search"]:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+
+/* ── Symptom grid ────────────────────────────────────────── */
+#sym-search { margin-bottom: 14px; resize: none; }
+
+.sym-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  max-height: 260px;
+  overflow-y: auto;
+  padding: 4px 0;
+}
+.sym-grid::-webkit-scrollbar { width: 5px; }
+.sym-grid::-webkit-scrollbar-track { background: transparent; }
+.sym-grid::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+
+.chip {
+  padding: 6px 13px;
+  border-radius: 99px;
+  border: 1.5px solid var(--border);
+  background: var(--bg);
+  font-size: .82rem;
+  font-weight: 500;
+  cursor: pointer;
+  user-select: none;
+  transition: background .15s, border-color .15s, color .15s;
+}
+.chip:hover { border-color: var(--primary); color: var(--primary); }
+.chip.selected {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #fff;
+}
+.loading-chips { color: var(--muted); font-size: .9rem; }
+
+/* ── Selected preview ────────────────────────────────────── */
+.selected-preview {
+  margin-top: 16px;
+  padding: 10px 14px;
+  background: var(--primary-bg);
+  border-radius: 10px;
+  font-size: .85rem;
+  color: var(--primary-d);
+  line-height: 1.6;
+}
+
+/* ── Predict button ─────────────────────────────────────── */
+.btn-predict {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 22px;
+  padding: 13px 28px;
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background .2s, transform .1s;
+  width: 100%;
+  justify-content: center;
+}
+.btn-predict:hover  { background: var(--primary-d); }
+.btn-predict:active { transform: scale(.98); }
+.btn-predict:disabled { opacity: .6; cursor: not-allowed; }
+.btn-icon { font-size: 1.1rem; }
+
+/* ── Result card ─────────────────────────────────────────── */
+.result-card { animation: fadeSlide .35s ease; }
+
+@keyframes fadeSlide {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Result markup injected by JS ─────────────────────────── */
+.result-header { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+.result-icon   { font-size: 2.2rem; }
+.result-label  { font-size: .75rem; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; }
+.result-disease { font-size: 1.5rem; font-weight: 800; color: var(--text); }
+
+.confidence-bar-wrap {
+  margin-bottom: 18px;
+}
+.conf-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: .83rem;
+  font-weight: 600;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+.conf-bar-bg {
+  height: 10px;
+  background: var(--border);
+  border-radius: 99px;
+  overflow: hidden;
+}
+.conf-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+  border-radius: 99px;
+  transition: width .6s ease;
+}
+
+.sym-found-section { margin-top: 16px; }
+.sym-found-label { font-size: .8rem; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; margin-bottom: 10px; }
+.sym-found-chips { display: flex; flex-wrap: wrap; gap: 7px; }
+.sym-found-chip {
+  padding: 4px 11px;
+  background: var(--accent-bg);
+  color: #065f46;
+  border-radius: 99px;
+  font-size: .8rem;
+  font-weight: 600;
+}
+
+/* ── Error state ─────────────────────────────────────────── */
+.error-box {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  padding: 16px;
+  background: var(--danger-bg);
+  border-radius: 10px;
+  color: #991b1b;
+  font-size: .9rem;
+}
+.error-icon { font-size: 1.3rem; flex-shrink: 0; }
+
+/* ── Disclaimer ─────────────────────────────────────────── */
+.disclaimer {
+  font-size: .82rem;
+  color: var(--muted);
+  text-align: center;
+  padding: 0 10px;
+  line-height: 1.6;
+}
+.disclaimer strong { color: var(--warn); }
+
+/* ── Responsive ─────────────────────────────────────────── */
+@media (max-width: 540px) {
+  .hero h1 { font-size: 1.3rem; }
+  .card { padding: 18px; }
+  .badge { display: none; }
+}
